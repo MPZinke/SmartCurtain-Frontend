@@ -28,6 +28,8 @@ async def POST(curtain_id: int):
 		curtain_request = client.get(f"http://localhost:8001/curtains/{curtain_id}")
 		structure_request = client.get(f"http://localhost:8001/curtains/{curtain_id}/structure")
 		curtain_response, structure_response = await asyncio.gather(curtain_request, structure_request)
-		
+
+	curtain = curtain_response.json()
+	structure = structure_response.json()
 	path = [structure["home"], structure["room"], structure["curtain"]]
 	return render_template("Curtain/Index.j2", curtain=curtain, path=path)
