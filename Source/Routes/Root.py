@@ -25,7 +25,7 @@ async def GET():
 	async with httpx.AsyncClient() as client:
 		homes = (await client.get("http://localhost:8001/homes")).json()
 		print(homes)
-	return render_template("Index.j2", homes=homes, path="")
+	return render_template("Index.j2", datetime=datetime, homes=homes, path="")
 
 
 def favicon():

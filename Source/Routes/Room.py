@@ -1,6 +1,7 @@
 
 
 import asyncio
+from datetime import datetime
 from flask import render_template, session
 import httpx
 
@@ -15,4 +16,4 @@ async def GET(room_id: int):
 	structure = structure_response.json()
 	print(structure)
 	path = [structure["home"], structure["room"]]
-	return render_template("Room/Index.j2", room=room, path=path)
+	return render_template("Room/Index.j2", datetime=datetime, room=room, path=path)

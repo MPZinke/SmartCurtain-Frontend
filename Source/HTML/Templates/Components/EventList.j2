@@ -1,5 +1,5 @@
 
-{% macro EventList(event_list, event_name) %}
+{% macro EventList(event_list, area) %}
 	<div>
 		<table
 		  class="table table-dark table-striped"
@@ -15,6 +15,8 @@
 					<th>
 						Option
 					</th>
+					<th>
+					</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -28,6 +30,24 @@
 						</td>
 						<td>
 							{{ event["option"] }}
+						</td>
+						<td
+						  class="col-md-1"
+						>
+							<a
+							  href="/{{ area }}/events/{{ event["id"] }}/edit"
+							>
+								&#9998;
+							</a>
+						</td>
+						<td
+						  class="col-md-1"
+						>
+							<a
+							  href="/{{ area }}/events/{{ event["id"] }}/delete"
+							>
+								X
+							</a>
 						</td>
 					</tr>
 				{% endfor %}

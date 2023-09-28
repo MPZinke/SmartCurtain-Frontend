@@ -11,8 +11,7 @@
 	AreaEvent.New.Modal.Inputs = {};
 	AreaEvent.New.Modal.Inputs.PERCENTAGE_RANGE = undefined;
 	AreaEvent.New.Modal.Inputs.PERCENTAGE_INPUT = undefined;
-	AreaEvent.New.Modal.Inputs.DATE = undefined;
-	AreaEvent.New.Modal.Inputs.TIME = undefined;
+	AreaEvent.New.Modal.Inputs.DATETIME = undefined;
 </script>
 
 
@@ -121,27 +120,14 @@
 							<span
 							  class="input-group-text"
 							>
-								Date
-							</span>
-							<input
-							  id="AreaEvent.New.Modal-date-input"
-							  name="AreaEvent.New.Modal-date-input"
-							  value="2023-09-22"
-							  type="date"
-							  aria-label="Date"
-							  class="form-control"
-							  disabled
-							>
-							<span
-							  class="input-group-text"
-							>
 								Time
 							</span>
 							<input
-							  id="AreaEvent.New.Modal-time-input"
-							  name="AreaEvent.New.Modal-time-input"
-							  type="text"
-							  aria-label="Time"
+							  id="AreaEvent.New.Modal-datetime-input"
+							  name="AreaEvent.New.Modal-datetime-input"
+							  value="{{ datetime.now().strftime("%Y-%m-%dT%H:%M") }}"
+							  type="datetime-local"
+							  aria-label="Date"
 							  class="form-control"
 							  disabled
 							>
@@ -174,8 +160,7 @@
 <script>
 	AreaEvent.New.Modal.Inputs.PERCENTAGE_RANGE = document.getElementById("AreaEvent.New.Modal-percentage_range-input");
 	AreaEvent.New.Modal.Inputs.PERCENTAGE_INPUT = document.getElementById("AreaEvent.New.Modal-percentage_input-input");
-	AreaEvent.New.Modal.Inputs.DATE = document.getElementById("AreaEvent.New.Modal-date-input");
-	AreaEvent.New.Modal.Inputs.TIME = document.getElementById("AreaEvent.New.Modal-time-input");
+	AreaEvent.New.Modal.Inputs.DATETIME = document.getElementById("AreaEvent.New.Modal-datetime-input");
 
 
 	AreaEvent.New.Modal.toggle_datetime = function toggle_datetime(checkbox)
@@ -186,8 +171,7 @@
 	{
 		const disable_inputs = checkbox.checked === false;
 
-		AreaEvent.New.Modal.Inputs.DATE.disabled = disable_inputs;
-		AreaEvent.New.Modal.Inputs.TIME.disabled = disable_inputs;
+		AreaEvent.New.Modal.Inputs.DATETIME.disabled = disable_inputs;
 	}
 
 

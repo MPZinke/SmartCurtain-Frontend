@@ -46,13 +46,13 @@
 					  class="table table-dark table-striped"
 					>
 						<tbody>
-							{% for id, name in room["Curtains"].items() %}
+							{% for curtain in room["Curtains"] %}
 								<tr>
 									<td>
 										<a
-										  href="/curtains/{{ id }}"
+										  href="/curtains/{{ curtain["id"] }}"
 										>
-											{{ name }}
+											{{ curtain["name"] }}
 										</a>
 									</td>
 								</tr>
@@ -93,7 +93,7 @@
 				<div
 				  class="accordion-body"
 				>
-					{{ EventList(room["RoomEvents"], "Room Events") }}
+					{{ EventList(room["RoomEvents"], "room") }}
 				</div>
 			</div>
 		</div>

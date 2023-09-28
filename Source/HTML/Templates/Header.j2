@@ -2,12 +2,12 @@
 
 <html>
 	<head>
-		<link rel='icon' href='{{ url_for("static", filename="Media/Images/CurtainBlank.png") }}'>
-		<link rel='stylesheet' href='{{ url_for("static", filename="Libraries/Bootstrap/bootstrap.min.css") }}'>
-		<link rel='stylesheet' href='{{ url_for("static", filename="Style.css") }}'>
+		<link rel="icon" href="{{ url_for("static", filename="Media/Images/CurtainBlank.png") }}">
+		<link rel="stylesheet" href="{{ url_for("static", filename="Libraries/Bootstrap/bootstrap.min.css") }}">
+		<link rel="stylesheet" href="{{ url_for("static", filename="Style.css") }}">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<script type='text/javascript' src='{{ url_for("static", filename="Libraries/Google/jquery.min.js") }}'></script>
-		<script type='text/javascript' src='{{ url_for("static", filename="Libraries/Bootstrap/bootstrap.bundle.min.js") }}'></script>
+		<script type="text/javascript" src="{{ url_for("static", filename="Libraries/Google/jquery.min.js") }}"></script>
+		<script type="text/javascript" src="{{ url_for("static", filename="Libraries/Bootstrap/bootstrap.bundle.min.js") }}"></script>
 	</head>
 	<nav
 	  class="navbar navbar-expand-md bg-body-secondary"
@@ -81,9 +81,11 @@
 </html>
 
 <script>
-	$(function () {
-		$('[data-toggle="tooltip"]').tooltip()
-	});
+	$(function()
+		{
+			$('[data-toggle="tooltip"]').tooltip()
+		}
+	);
 
 
 	function html_to_element(html)
