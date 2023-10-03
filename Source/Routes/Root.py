@@ -15,15 +15,19 @@ __author__ = "MPZinke"
 
 
 import asyncio
+from datetime import datetime
 from flask import render_template, session
 import httpx
+
+
+from Global import BACKEND_DOMAIN
 
 
 # —————————————————————————————————————————————————————— ROUTES —————————————————————————————————————————————————————— #
 
 async def GET():
 	async with httpx.AsyncClient() as client:
-		homes = (await client.get("http://localhost:8001/homes")).json()
+		homes = (await client.get(f"{BACKEND_DOMAIN}/homes")).json()
 		print(homes)
 	return render_template("Index.j2", datetime=datetime, homes=homes, path="")
 

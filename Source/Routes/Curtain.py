@@ -6,10 +6,13 @@ from flask import redirect, render_template, request, session
 import httpx
 
 
+from Global import BACKEND_DOMAIN
+
+
 async def GET(curtain_id: int):
 	async with httpx.AsyncClient() as client:
-		curtain_request = client.get(f"http://localhost:8001/curtains/{curtain_id}")
-		structure_request = client.get(f"http://localhost:8001/curtains/{curtain_id}/structure")
+		curtain_request = client.get(f"{BACKEND_DOMAIN}/curtains/{curtain_id}")
+		structure_request = client.get(f"{BACKEND_DOMAIN}/curtains/{curtain_id}/structure")
 		curtain_response, structure_response = await asyncio.gather(curtain_request, structure_request)
 
 	curtain = curtain_response.json()
@@ -30,8 +33,19 @@ async def POST(curtain_id: int):
 		datetime_input = f"""{datetime_input.replace("T", " ")}:00"""
 
 	async with httpx.AsyncClient() as client:
-		curtain_response = await client.post(f"http://localhost:8001/curtains/{curtain_id}/events", json=event)
+		curtain_response = await client.post(f"{BACKEND_DOMAIN}/curtains/{curtain_id}/events", json=event)
 
 	curtain = curtain_response.json()
 	print(curtain)
+	return redirect(f"/curtains/{curtain_id}")
+
+
+# `/curtains/events/{{ event["id"] }}/delete`
+async def DELETE(curtain_id: int, event_id: int):
+	async with httpx.AsyncClient() as client:
+		curtain_response = await client.delete(f"{BACKEND_DOMAIN}/curtains/{curtain_id}/events/{event_id}")
+
+	curtain = curtain_response.json()
+	print(curtain)
+	curtain_id =  curtain["id"]
 	return redirect(f"/curtains/{curtain_id}")
