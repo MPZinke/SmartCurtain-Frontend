@@ -32,6 +32,7 @@ def main():
 	server.route("/homes/<int:home_id>", GET=Routes.Home.GET)
 	server.route("/rooms/<int:room_id>", GET=Routes.Room.GET)
 	server.route("/curtains/<int:curtain_id>", GET=Routes.Curtain.GET, POST=Routes.Curtain.POST)
+	server.route("/curtains/<int:curtain_id>/events/<int:event_id>/edit", GET=Routes.Curtain.GET_curtain_id_event_id)
 
 	server(port=80)
 

@@ -40,6 +40,21 @@ async def POST(curtain_id: int):
 	return redirect(f"/curtains/{curtain_id}")
 
 
+async def GET_curtain_id_event_id(curtain_id: int, event_id: int):
+	async with httpx.AsyncClient() as client:
+		curtain_request = client.get(f"{BACKEND_DOMAIN}/curtains/{curtain_id}")
+		structure_request = client.get(f"{BACKEND_DOMAIN}/curtains/{curtain_id}/structure")
+		curtain_response, structure_response = await asyncio.gather(curtain_request, structure_request)
+
+	curtain = curtain_response.json()
+	structure = structure_response.json()
+	event = curtain["CurtainEvents"][0]
+	event["time"] = event["time"][:16].replace(" ", "T")
+	path = [structure["home"], structure["room"], structure["curtain"], ""]
+	# TODO: UPDATE PATH
+	return render_template("Curtain/EditEvent.j2", event=event, path=path)
+
+
 # `/curtains/events/{{ event["id"] }}/delete`
 async def DELETE(curtain_id: int, event_id: int):
 	async with httpx.AsyncClient() as client:

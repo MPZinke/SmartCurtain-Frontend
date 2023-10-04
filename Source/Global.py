@@ -3,4 +3,4 @@
 import os
 
 
-BACKEND_DOMAIN = os.getenv("BACKEND_DOMAIN")
+BACKEND_DOMAIN = os.getenv("SMARTCURTAIN_BACKEND_DOMAIN")
