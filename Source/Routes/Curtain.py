@@ -16,9 +16,12 @@ async def GET(curtain_id: int):
 		curtain_response, structure_response = await asyncio.gather(curtain_request, structure_request)
 
 	curtain = curtain_response.json()
+
 	structure = structure_response.json()
-	print(structure)
-	path = [structure["home"], structure["room"], structure["curtain"]]
+	path = [{"name": curtain["name"], "url": f"""/curtains/{curtain["id"]}"""}]
+	for area in ["room", "home"]:
+		path.insert(0, {"name": structure[area]["name"], "url": f"""/{area}s/{structure[area]["id"]}"""})
+
 	return render_template("Curtain/Index.j2", curtain=curtain, datetime=datetime, path=path)
 
 
@@ -47,11 +50,14 @@ async def GET_curtain_id_event_id(curtain_id: int, event_id: int):
 		curtain_response, structure_response = await asyncio.gather(curtain_request, structure_request)
 
 	curtain = curtain_response.json()
-	structure = structure_response.json()
 	event = curtain["CurtainEvents"][0]
 	event["time"] = event["time"][:16].replace(" ", "T")
-	path = [structure["home"], structure["room"], structure["curtain"], ""]
-	# TODO: UPDATE PATH
+
+	structure = structure_response.json()
+	path = [{"name": f"""Event #{event["id"]}""", "url": f"""/curtains/{curtain["id"]}/events/{event["id"]}"""}]
+	for area in ["curtain", "room", "home"]:
+		path.insert(0, {"name": structure[area]["name"], "url": f"""/{area}s/{structure[area]["id"]}"""})
+
 	return render_template("Curtain/EditEvent.j2", event=event, path=path)
 
 

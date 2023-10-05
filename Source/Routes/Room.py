@@ -16,7 +16,9 @@ async def GET(room_id: int):
 		room_response, structure_response = await asyncio.gather(room_request, structure_request)
 
 	room = room_response.json()
+
 	structure = structure_response.json()
-	print(structure)
-	path = [structure["home"], structure["room"]]
+	path = [{"name": room["name"], "url": f"""/rooms/{room["id"]}"""}]
+	path.insert(0, {"name": structure["home"]["name"], "url": f"""/homes/{structure["home"]["id"]}"""})
+
 	return render_template("Room/Index.j2", datetime=datetime, room=room, path=path)
