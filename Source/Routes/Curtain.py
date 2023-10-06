@@ -25,7 +25,7 @@ async def GET(curtain_id: int):
 	return render_template("Curtain/Index.j2", curtain=curtain, datetime=datetime, path=path)
 
 
-async def POST(curtain_id: int):
+async def POST(area_id: int):
 	percentage_range = request.form["AreaEvent.New.Modal-percentage_range-input"]
 	default_time = (datetime.now() + timedelta(seconds=1)).strftime("%Y-%m-%d %H:%M:%S")
 	event = {"percentage": int(percentage_range), "option": None, "time": default_time}

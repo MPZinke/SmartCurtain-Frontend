@@ -29,9 +29,9 @@ def main():
 	server._app.secret_key = random_keygen(64)
 	server.route("/", Routes.Root.GET)
 	server.route("/homes", Routes.Root.GET)
-	server.route("/homes/<int:home_id>", GET=Routes.Home.GET)
-	server.route("/rooms/<int:room_id>", GET=Routes.Room.GET)
-	server.route("/curtains/<int:curtain_id>", GET=Routes.Curtain.GET, POST=Routes.Curtain.POST)
+	server.route("/homes/<int:area_id>", GET=Routes.GET("home"), POST=Routes.POST("home"))
+	server.route("/rooms/<int:area_id>", GET=Routes.GET("room"), POST=Routes.POST("room"))
+	server.route("/curtains/<int:area_id>", GET=Routes.GET("curtain"), POST=Routes.POST("curtain"))
 	server.route("/curtains/<int:curtain_id>/events/<int:event_id>/edit", GET=Routes.Curtain.GET_curtain_id_event_id)
 
 	server(port=80)
