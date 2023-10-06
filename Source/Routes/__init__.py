@@ -70,25 +70,43 @@ def POST(type: str) -> callable:
 	return callback
 
 
-
-
-
-def GET_curtain_id_event_id(type: str) -> callable:
+def GET_event(type: str) -> callable:
 	crumbs = {"curtain": ["home", "room", "curtain"], "room": ["home", "room"], "home": ["home"]}[type]
 
 	async def callback(area_id: int, event_id: int):
 		async with httpx.AsyncClient() as client:
-			area_request = client.get(f"{BACKEND_DOMAIN}/areas/{area_id}")
-			structure_request = client.get(f"{BACKEND_DOMAIN}/areas/{area_id}/structure")
-			area_response, structure_response = await asyncio.gather(area_request, structure_request)
+			event_request = client.get(f"{BACKEND_DOMAIN}/{type}s/{area_id}/events/{event_id}")
+			structure_request = client.get(f"{BACKEND_DOMAIN}/{type}s/{area_id}/structure")
+			event_response, structure_response = await asyncio.gather(event_request, structure_request)
 
-		area = area_response.json()
-		event = area["CurtainEvents"][0]
+		event = event_response.json()
 		event["time"] = event["time"][:16].replace(" ", "T")
 
 		structure = structure_response.json()
 		path = [{"name": structure[area]["name"], "url": f"""/{area}s/{structure[area]["id"]}"""} for area in crumbs]
+		path.append({"name": f"""Event #{event["id"]}""", "url": f""})
 
 		return render_template("Area/EditEvent.j2", event=event, path=path)
+
+	return callback
+
+
+def POST_event(type: str) -> callable:
+	crumbs = {"curtain": ["home", "room", "curtain"], "room": ["home", "room"], "home": ["home"]}[type]
+
+	async def callback(area_id: int, event_id: int):
+		percentage_range = request.form["AreaEvent.New.Modal-percentage_range-input"]
+		event = {"percentage": int(percentage_range), "option": None, "time": default_time}
+		datetime_input = request.form["AreaEvent.New.Modal-datetime-input"]
+		datetime.strptime(datetime_input, "%Y-%m-%dT%H:%M")
+		event["time"] = f"""{datetime_input.replace("T", " ")}:00"""
+
+		async with httpx.AsyncClient() as client:
+			event_request = await client.post(f"{BACKEND_DOMAIN}/{type}s/{area_id}/events/{event_id}", json={})
+
+		event = event_response.json()
+		event["time"] = event["time"][:16].replace(" ", "T")
+
+		return redirect(f"/{type}/{area_id}/events/{event_id}")
 
 	return callback

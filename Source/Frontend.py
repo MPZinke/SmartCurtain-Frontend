@@ -32,7 +32,7 @@ def main():
 	server.route("/homes/<int:area_id>", GET=Routes.GET("home"), POST=Routes.POST("home"))
 	server.route("/rooms/<int:area_id>", GET=Routes.GET("room"), POST=Routes.POST("room"))
 	server.route("/curtains/<int:area_id>", GET=Routes.GET("curtain"), POST=Routes.POST("curtain"))
-	server.route("/curtains/<int:curtain_id>/events/<int:event_id>/edit", GET=Routes.Curtain.GET_curtain_id_event_id)
+	server.route("/curtains/<int:area_id>/events/<int:event_id>/edit", GET=Routes.GET_event("curtain"))
 
 	server(port=80)
 

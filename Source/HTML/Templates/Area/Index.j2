@@ -32,7 +32,7 @@
 					  aria-expanded="true"
 					  aria-controls="collapseOne"
 					>
-						{{ area["name"] }}'s Rooms
+						{{ area["name"] }}'s {{ subtype.title() }}s
 					</button>
 				</h2>
 				<div
@@ -78,7 +78,7 @@
 				  aria-expanded="{{ "true" if subareas is none else "false" }}"
 				  aria-controls="collapseTwo"
 				>
-					Home's Events
+					{{ area["name"] }}'s Events
 					<span
 					  class="badge text-bg-primary"
 					  style="margin-left: 4px;"
