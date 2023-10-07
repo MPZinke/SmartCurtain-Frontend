@@ -96,17 +96,15 @@ def POST_event(type: str) -> callable:
 
 	async def callback(area_id: int, event_id: int):
 		percentage_range = request.form["AreaEvent.New.Modal-percentage_range-input"]
-		event = {"percentage": int(percentage_range), "option": None, "time": default_time}
+		event = {"percentage": int(percentage_range), "option": None}
 		datetime_input = request.form["AreaEvent.New.Modal-datetime-input"]
 		datetime.strptime(datetime_input, "%Y-%m-%dT%H:%M")
 		event["time"] = f"""{datetime_input.replace("T", " ")}:00"""
 
 		async with httpx.AsyncClient() as client:
-			event_request = await client.post(f"{BACKEND_DOMAIN}/{type}s/{area_id}/events/{event_id}", json={})
+			event_response = await client.patch(f"{BACKEND_DOMAIN}/{type}s/{area_id}/events/{event_id}", json=event)
 
 		event = event_response.json()
-		event["time"] = event["time"][:16].replace(" ", "T")
-
 		return redirect(f"/{type}/{area_id}/events/{event_id}")
 
 	return callback
