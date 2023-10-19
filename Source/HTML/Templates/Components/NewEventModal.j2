@@ -1,18 +1,6 @@
 
 
-<script>
-	var AreaEvent = {};
-	AreaEvent.New = {};
-	AreaEvent.New.Modal = {};
-	AreaEvent.New.Modal.toggle_datetime = undefined;
-	AreaEvent.New.Modal.update_percentage_range = undefined;
-	AreaEvent.New.Modal.update_percentage_input = undefined;
-
-	AreaEvent.New.Modal.Inputs = {};
-	AreaEvent.New.Modal.Inputs.PERCENTAGE_RANGE = undefined;
-	AreaEvent.New.Modal.Inputs.PERCENTAGE_INPUT = undefined;
-	AreaEvent.New.Modal.Inputs.DATETIME = undefined;
-</script>
+<script src="{{ url_for("static", filename="TemplatesJS/Components/NewEventModal/Header.js") }}"></script>
 
 
 
@@ -157,41 +145,5 @@
 	</div>
 </form>
 
-<script>
-	AreaEvent.New.Modal.Inputs.PERCENTAGE_RANGE = document.getElementById("AreaEvent.New.Modal-percentage_range-input");
-	AreaEvent.New.Modal.Inputs.PERCENTAGE_INPUT = document.getElementById("AreaEvent.New.Modal-percentage_input-input");
-	AreaEvent.New.Modal.Inputs.DATETIME = document.getElementById("AreaEvent.New.Modal-datetime-input");
 
-
-	AreaEvent.New.Modal.toggle_datetime = function toggle_datetime(checkbox)
-	/*
-	SUMMARY: Enable and disables the date and time fields of the modal.
-	PARAMS:  Takes the item that is toggling the date and time fields.
-	*/
-	{
-		const disable_inputs = checkbox.checked === false;
-
-		AreaEvent.New.Modal.Inputs.DATETIME.disabled = disable_inputs;
-	}
-
-
-	AreaEvent.New.Modal.update_percentage_range = function update_percentage_range(input)
-	{
-		AreaEvent.New.Modal.Inputs.PERCENTAGE_INPUT.value = Math.floor(AreaEvent.New.Modal.Inputs.PERCENTAGE_INPUT.value);
-		if(AreaEvent.New.Modal.Inputs.PERCENTAGE_INPUT.value > 100)
-		{
-			AreaEvent.New.Modal.Inputs.PERCENTAGE_INPUT.value = 100;
-		}
-		if(AreaEvent.New.Modal.Inputs.PERCENTAGE_INPUT.value < 0)
-		{
-			AreaEvent.New.Modal.Inputs.PERCENTAGE_INPUT.value = 0;
-		}
-		AreaEvent.New.Modal.Inputs.PERCENTAGE_RANGE.value = AreaEvent.New.Modal.Inputs.PERCENTAGE_INPUT.value;
-	}
-
-
-	AreaEvent.New.Modal.update_percentage_input = function update_percentage_input(range)
-	{
-		AreaEvent.New.Modal.Inputs.PERCENTAGE_INPUT.value = AreaEvent.New.Modal.Inputs.PERCENTAGE_RANGE.value;
-	}
-</script>
+<script src="{{ url_for("static", filename="TemplatesJS/Components/NewEventModal/Scripts.js") }}"></script>

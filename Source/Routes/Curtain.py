@@ -2,7 +2,7 @@
 
 import asyncio
 from datetime import datetime, timedelta
-from flask import redirect, render_template, request, session
+from flask import redirect, render_template, request
 import httpx
 
 

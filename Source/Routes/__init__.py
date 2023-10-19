@@ -32,7 +32,7 @@ def GET(type: str) -> callable:
 	crumbs = {"curtain": ["home", "room", "curtain"], "room": ["home", "room"], "home": ["home"]}[type]
 	subtype = {"curtain": None, "room": "Curtain", "home": "Room"}[type]
 
-	async def callback(area_id: int):
+	async def callback(area_id: str):
 		async with httpx.AsyncClient() as client:
 			area_request = client.get(f"{BACKEND_DOMAIN}/{type}s/{area_id}")
 			structure_request = client.get(f"{BACKEND_DOMAIN}/{type}s/{area_id}/structure")
@@ -52,7 +52,7 @@ def GET(type: str) -> callable:
 
 
 def POST(type: str) -> callable:
-	async def callback(area_id: int):
+	async def callback(area_id: str):
 		percentage_range = request.form["AreaEvent.New.Modal-percentage_range-input"]
 		default_time = (datetime.now() + timedelta(seconds=1)).strftime("%Y-%m-%d %H:%M:%S")
 		event = {"percentage": int(percentage_range), "option": None, "time": default_time}
@@ -73,7 +73,7 @@ def POST(type: str) -> callable:
 def GET_event(type: str) -> callable:
 	crumbs = {"curtain": ["home", "room", "curtain"], "room": ["home", "room"], "home": ["home"]}[type]
 
-	async def callback(area_id: int, event_id: int):
+	async def callback(area_id: str, event_id: int):
 		async with httpx.AsyncClient() as client:
 			event_request = client.get(f"{BACKEND_DOMAIN}/{type}s/{area_id}/events/{event_id}")
 			structure_request = client.get(f"{BACKEND_DOMAIN}/{type}s/{area_id}/structure")
@@ -92,12 +92,10 @@ def GET_event(type: str) -> callable:
 
 
 def POST_event(type: str) -> callable:
-	crumbs = {"curtain": ["home", "room", "curtain"], "room": ["home", "room"], "home": ["home"]}[type]
-
-	async def callback(area_id: int, event_id: int):
-		percentage_range = request.form["AreaEvent.New.Modal-percentage_range-input"]
+	async def callback(area_id: str, event_id: int):
+		percentage_range = request.form["AreaEvent.Edit.Modal-percentage_range-input"]
 		event = {"percentage": int(percentage_range), "option": None}
-		datetime_input = request.form["AreaEvent.New.Modal-datetime-input"]
+		datetime_input = request.form["AreaEvent.Edit.Modal-datetime-input"]
 		datetime.strptime(datetime_input, "%Y-%m-%dT%H:%M")
 		event["time"] = f"""{datetime_input.replace("T", " ")}:00"""
 
@@ -105,6 +103,6 @@ def POST_event(type: str) -> callable:
 			event_response = await client.patch(f"{BACKEND_DOMAIN}/{type}s/{area_id}/events/{event_id}", json=event)
 
 		event = event_response.json()
-		return redirect(f"/{type}/{area_id}/events/{event_id}")
+		return redirect(f"/{type}s/{area_id}/events/{event_id}/edit")
 
 	return callback

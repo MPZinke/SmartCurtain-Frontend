@@ -29,10 +29,12 @@ def main():
 	server._app.secret_key = random_keygen(64)
 	server.route("/", Routes.Root.GET)
 	server.route("/homes", Routes.Root.GET)
-	server.route("/homes/<int:area_id>", GET=Routes.GET("home"), POST=Routes.POST("home"))
-	server.route("/rooms/<int:area_id>", GET=Routes.GET("room"), POST=Routes.POST("room"))
-	server.route("/curtains/<int:area_id>", GET=Routes.GET("curtain"), POST=Routes.POST("curtain"))
-	server.route("/curtains/<int:area_id>/events/<int:event_id>/edit", GET=Routes.GET_event("curtain"))
+	server.route("/homes/<string:area_id>", GET=Routes.GET("home"), POST=Routes.POST("home"))
+	server.route("/rooms/<string:area_id>", GET=Routes.GET("room"), POST=Routes.POST("room"))
+	server.route("/curtains/<string:area_id>", GET=Routes.GET("curtain"), POST=Routes.POST("curtain"))
+	server.route("/curtains/<string:area_id>/events/<int:event_id>/edit", GET=Routes.GET_event("curtain"),
+		POST=Routes.POST_event("curtain")
+	)
 
 	server(port=80)
 
