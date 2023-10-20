@@ -5,10 +5,16 @@ FROM python:3.11
 ENV TZ="America/Chicago"
 
 
+RUN apt update
+RUN apt install -y npm
+RUN npm install -g typescript
+
+
 COPY ./  /usr/local/bin/SmartCurtain/Frontend/
 RUN chmod -R 777 /usr/local/bin/SmartCurtain
+RUN tsc -p /usr/local/bin/SmartCurtain/Frontend
 
-RUN pip3 install -r /usr/local/bin/SmartCurtain/Frontend/Requirements.txt
+RUN pip3 install /usr/local/bin/SmartCurtain/Frontend
 
 
 # ————————————————————————————————————————————————————— RUNTIME ————————————————————————————————————————————————————— #

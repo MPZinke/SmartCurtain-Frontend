@@ -16,7 +16,6 @@ __author__ = "MPZinke"
 
 
 import Routes.Root
-import Routes.Curtain
 
 
 import asyncio
@@ -53,11 +52,11 @@ def GET(type: str) -> callable:
 
 def POST(type: str) -> callable:
 	async def callback(area_id: str):
-		percentage_range = request.form["AreaEvent.New.Modal-percentage_range-input"]
+		percentage_range = request.form["NewAreaEventModal-percentage_range-input"]
 		default_time = (datetime.now() + timedelta(seconds=1)).strftime("%Y-%m-%d %H:%M:%S")
 		event = {"percentage": int(percentage_range), "option": None, "time": default_time}
-		if("AreaEvent.New.Modal-select_time-checkbox" in request.form):
-			datetime_input = request.form["AreaEvent.New.Modal-datetime-input"]
+		if("NewAreaEventModal-select_time-checkbox" in request.form):
+			datetime_input = request.form["NewAreaEventModal-datetime-input"]
 			datetime.strptime(datetime_input, "%Y-%m-%dT%H:%M")
 			event["time"] = f"""{datetime_input.replace("T", " ")}:00"""
 
@@ -93,9 +92,9 @@ def GET_event(type: str) -> callable:
 
 def POST_event(type: str) -> callable:
 	async def callback(area_id: str, event_id: int):
-		percentage_range = request.form["AreaEvent.Edit.Modal-percentage_range-input"]
+		percentage_range = request.form["EditAreaEvent-percentage_range-input"]
 		event = {"percentage": int(percentage_range), "option": None}
-		datetime_input = request.form["AreaEvent.Edit.Modal-datetime-input"]
+		datetime_input = request.form["EditAreaEvent-datetime-input"]
 		datetime.strptime(datetime_input, "%Y-%m-%dT%H:%M")
 		event["time"] = f"""{datetime_input.replace("T", " ")}:00"""
 

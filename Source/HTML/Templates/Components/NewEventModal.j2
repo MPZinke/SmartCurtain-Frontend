@@ -1,7 +1,6 @@
 
 
-<script src="{{ url_for("static", filename="TemplatesJS/Components/NewEventModal/Header.js") }}"></script>
-
+<script src="{{ url_for("static", filename="Scripts/Components/NewEventModal.j2/Header.js") }}"></script>
 
 
 <button type="button"
@@ -66,9 +65,9 @@
 									  max="100"
 									  step="1"
 									  value="0"
-									  id="AreaEvent.New.Modal-percentage_range-input"
-									  name="AreaEvent.New.Modal-percentage_range-input"
-									  onchange="AreaEvent.New.Modal.update_percentage_input(this);"
+									  id="NewAreaEventModal-percentage_range-input"
+									  name="NewAreaEventModal-percentage_range-input"
+									  onchange="NewAreaEventModal.update_percentage_input(this);"
 									>
 								</div>
 								<input
@@ -78,8 +77,8 @@
 								  max="100"
 								  step="1"
 								  value="0"
-								  id="AreaEvent.New.Modal-percentage_input-input"
-								  onchange="AreaEvent.New.Modal.update_percentage_range(this);"
+								  id="NewAreaEventModal-percentage_input-input"
+								  onchange="NewAreaEventModal.update_percentage_range(this);"
 								>
 							</div>
 						</div>
@@ -96,12 +95,12 @@
 							  class="input-group-text"
 							>
 								<input
-								  id="AreaEvent.New.Modal-select_time-checkbox"
-								  name="AreaEvent.New.Modal-select_time-checkbox"
+								  id="NewAreaEventModal-select_time-checkbox"
+								  name="NewAreaEventModal-select_time-checkbox"
 								  class="form-check-input mt-0"
 								  type="checkbox"
 								  value=""
-								  onclick="AreaEvent.New.Modal.toggle_datetime(this);"
+								  onclick="NewAreaEventModal.toggle_datetime(this);"
 								  aria-label="Checkbox for following text input"
 								>
 							</div>
@@ -111,8 +110,8 @@
 								Time
 							</span>
 							<input
-							  id="AreaEvent.New.Modal-datetime-input"
-							  name="AreaEvent.New.Modal-datetime-input"
+							  id="NewAreaEventModal-datetime-input"
+							  name="NewAreaEventModal-datetime-input"
 							  value="{{ datetime.now().strftime("%Y-%m-%dT%H:%M") }}"
 							  type="datetime-local"
 							  aria-label="Date"
@@ -146,4 +145,4 @@
 </form>
 
 
-<script src="{{ url_for("static", filename="TemplatesJS/Components/NewEventModal/Scripts.js") }}"></script>
+<script src="{{ url_for("static", filename="Scripts/Components/NewEventModal.j2/Scripts.js") }}"></script>

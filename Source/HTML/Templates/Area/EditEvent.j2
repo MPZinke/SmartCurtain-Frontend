@@ -1,17 +1,6 @@
 {% extends "Header.j2" %}
 {% block body %}
-	<script>
-		var AreaEvent = {};
-		AreaEvent.Edit = {};
-		AreaEvent.Edit.Modal = {};
-		AreaEvent.Edit.Modal.Inputs = {};
-		AreaEvent.Edit.Modal.Inputs.DATETIME = undefined;
-		AreaEvent.Edit.Modal.Inputs.PERCENTAGE_RANGE = undefined;
-		AreaEvent.Edit.Modal.Inputs.PERCENTAGE_INPUT = undefined;
-
-		AreaEvent.Edit.Modal.update_percentage_input = undefined;
-		AreaEvent.Edit.Modal.update_percentage_range = undefined;
-	</script>
+	<script src="{{ url_for("static", filename="Scripts/Area/EditEvent.j2/Header.js") }}"></script>
 
 	<title>
 		Edit Event
@@ -33,9 +22,9 @@
 					  max="100"
 					  step="1"
 					  value="{{ event["percentage"] }}"
-					  id="AreaEvent.Edit.Modal-percentage_range-input"
-					  name="AreaEvent.Edit.Modal-percentage_range-input"
-					  onchange="AreaEvent.Edit.Modal.update_percentage_input(this);"
+					  id="EditAreaEvent-percentage_range-input"
+					  name="EditAreaEvent-percentage_range-input"
+					  onchange="EditAreaEvent.update_percentage_input(this);"
 					>
 				</div>
 				<input
@@ -45,8 +34,8 @@
 				  max="100"
 				  step="1"
 				  value="{{ event["percentage"] }}"
-				  id="AreaEvent.Edit.Modal-percentage_input-input"
-				  onchange="AreaEvent.Edit.Modal.update_percentage_range(this);"
+				  id="EditAreaEvent-percentage_input-input"
+				  onchange="EditAreaEvent.update_percentage_range(this);"
 				>
 			</div>
 			<div
@@ -58,8 +47,8 @@
 					Select Time
 				</span>
 				<input
-				  id="AreaEvent.Edit.Modal-datetime-input"
-				  name="AreaEvent.Edit.Modal-datetime-input"
+				  id="EditAreaEvent-datetime-input"
+				  name="EditAreaEvent-datetime-input"
 				  value="{{ event["time"] }}"
 				  type="datetime-local"
 				  aria-label="Date"
@@ -74,30 +63,5 @@
 		</form>
 	</div>
 
-	<script>
-		AreaEvent.Edit.Modal.Inputs.DATETIME = document.getElementById("AreaEvent.Edit.Modal-datetime-input");
-		AreaEvent.Edit.Modal.Inputs.PERCENTAGE_RANGE = document.getElementById("AreaEvent.Edit.Modal-percentage_range-input");
-		AreaEvent.Edit.Modal.Inputs.PERCENTAGE_INPUT = document.getElementById("AreaEvent.Edit.Modal-percentage_input-input");
-
-
-		AreaEvent.Edit.Modal.update_percentage_range = function update_percentage_range(input)
-		{
-			AreaEvent.Edit.Modal.Inputs.PERCENTAGE_INPUT.value = Math.floor(AreaEvent.Edit.Modal.Inputs.PERCENTAGE_INPUT.value);
-			if(AreaEvent.Edit.Modal.Inputs.PERCENTAGE_INPUT.value > 100)
-			{
-				AreaEvent.Edit.Modal.Inputs.PERCENTAGE_INPUT.value = 100;
-			}
-			if(AreaEvent.Edit.Modal.Inputs.PERCENTAGE_INPUT.value < 0)
-			{
-				AreaEvent.Edit.Modal.Inputs.PERCENTAGE_INPUT.value = 0;
-			}
-			AreaEvent.Edit.Modal.Inputs.PERCENTAGE_RANGE.value = AreaEvent.Edit.Modal.Inputs.PERCENTAGE_INPUT.value;
-		}
-
-
-		AreaEvent.Edit.Modal.update_percentage_input = function update_percentage_input(range)
-		{
-			AreaEvent.Edit.Modal.Inputs.PERCENTAGE_INPUT.value = AreaEvent.Edit.Modal.Inputs.PERCENTAGE_RANGE.value;
-		}
-	</script>
+	<script src="{{ url_for("static", filename="Scripts/Area/EditEvent.j2/Scripts.js") }}"></script>
 {% endblock %}
