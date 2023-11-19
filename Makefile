@@ -13,7 +13,7 @@ run:
 
 clean:
 	docker rmi `docker images --filter dangling=true -q` --force
-
+	docker rm $(docker ps -a -q)
 
 kill:
 	docker stop `docker ps -q`

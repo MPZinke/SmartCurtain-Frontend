@@ -1,8 +1,8 @@
 
 
-NewAreaEventModal.Inputs.PERCENTAGE_RANGE = <HTMLInputElement>document.getElementById("NewAreaEventModal-percentage_range-input");
-NewAreaEventModal.Inputs.PERCENTAGE_INPUT = <HTMLInputElement>document.getElementById("NewAreaEventModal-percentage_input-input");
-NewAreaEventModal.Inputs.DATETIME = <HTMLInputElement>document.getElementById("NewAreaEventModal-datetime-input");
+NewAreaEventModal.Inputs.PERCENTAGE_RANGE = <HTMLInputElement>document.getElementById(${{NewAreaModalPercentageRangeInput}}$);
+NewAreaEventModal.Inputs.PERCENTAGE_INPUT = <HTMLInputElement>document.getElementById(${{NewAreaModalPercentageInputInput}}$);
+NewAreaEventModal.Inputs.DATETIME = <HTMLInputElement>document.getElementById(${{NewAreaModalDatetimeInput}}$);
 
 
 NewAreaEventModal.toggle_datetime = function toggle_datetime(checkbox: HTMLInputElement)

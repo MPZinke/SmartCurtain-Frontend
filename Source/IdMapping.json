@@ -1,39 +1,43 @@
 {
-	"EditEvent-Header":
+	"EditEvent":
 	{
-		"Javascript": "Scripts/Area/EditEvent.j2/Header.js",
 		"Template": "Area/EditEvent.j2",
-		"Typescript": "Scripts.ts/Area/EditEvent.j2/Header.ts",
-		"values": {}
-	},
-	"EditEvent-Scripts":
-	{
-		"Javascript": "Scripts/Area/EditEvent.j2/Scripts.js",
-		"Template": "Area/EditEvent.j2",
-		"Typescript": "Scripts.ts/Area/EditEvent.j2/Scripts.ts",
-		"values": {
-			"EditAreaEventModalDatetimeInput": "EditAreaEventModal-datetime-input",
-			"EditAreaEventModalPercentRangeInput": "EditAreaEventModal-percentage_range-input",
-			"EditAreaEventModalPercentInputInput": "EditAreaEventModal-percentage_input-input"
+		"Header":
+		{
+			"Javascript": "Scripts/Area/EditEvent.j2/Header.js",
+			"Typescript": "HTML/Scripts.ts/Area/EditEvent.j2/Header.ts",
+			"values": {}
+		},
+		"Source":
+		{
+			"Javascript": "Scripts/Area/EditEvent.j2/Scripts.js",
+			"Typescript": "HTML/Scripts.ts/Area/EditEvent.j2/Scripts.ts",
+			"values": {
+				"EditEventModalDatetimeInput": "\"EditAreaEventModal-datetime-input\"",
+				"EditEventModalPercentRangeInput": "\"EditAreaEventModal-percentage_range-input\"",
+				"EditEventModalPercentInputInput": "\"EditAreaEventModal-percentage_input-input\""
+			}
 		}
 	},
-	"NewEventModal-Header":
+	"NewEventModal":
 	{
-		"Javascript": "Scripts/Components/NewEventModal.j2/Header.js",
 		"Template": "Area/Index.j2",
-		"Typescript": "Scripts.ts/Area/EditEvent.j2/Header.ts",
-		"values": {}
-	},
-	"NewEventModal-Scripts":
-	{
-		"Javascript": "Scripts/Components/NewEventModal.j2/Scripts.js",
-		"Template": "Area/Index.j2",
-		"Typescript": "Scripts.ts/Components/NewEventModal.j2/Scripts.ts",
-		"values": {
-			"NewAreaModalPercentageRangeInput": "\"NewAreaEventModal-percentage_range-input\"",
-			"NewAreaModalPercentageInputInput" : "\"NewAreaEventModal-percentage_input-input\"",
-			"NewAreaModalSelectTimeCheckbox" : "\"NewAreaEventModal-select_time-checkbox\"",
-			"NewAreaModalDatetimeInput" : "\"NewAreaEventModal-datetime-input\""
+		"Header":
+		{
+			"Javascript": "Scripts/Components/NewEventModal.j2/Header.js",
+			"Typescript": "HTML/Scripts.ts/Components/NewEventModal.j2/Header.ts",
+			"values": {}
+		},
+		"Source":
+		{
+			"Javascript": "Scripts/Components/NewEventModal.j2/Scripts.js",
+			"Typescript": "HTML/Scripts.ts/Components/NewEventModal.j2/Scripts.ts",
+			"values": {
+				"NewAreaModalPercentageRangeInput": "\"NewAreaEventModal-percentage_range-input\"",
+				"NewAreaModalPercentageInputInput" : "\"NewAreaEventModal-percentage_input-input\"",
+				"NewAreaModalSelectTimeCheckbox" : "\"NewAreaEventModal-select_time-checkbox\"",
+				"NewAreaModalDatetimeInput" : "\"NewAreaEventModal-datetime-input\""
+			}
 		}
 	}
 }

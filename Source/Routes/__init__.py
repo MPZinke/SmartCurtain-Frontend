@@ -38,6 +38,8 @@ def GET(type: str) -> callable:
 	crumbs = {"curtain": ["home", "room", "curtain"], "room": ["home", "room"], "home": ["home"]}[type]
 	subtype = {"curtain": None, "room": "Curtain", "home": "Room"}[type]
 
+	IDMapping = IDMAPPING["NewEventModal"]
+
 	async def callback(area_id: str):
 		async with httpx.AsyncClient() as client:
 			area_request = client.get(f"{BACKEND_DOMAIN}/{type}s/{area_id}")
@@ -52,7 +54,7 @@ def GET(type: str) -> callable:
 		path = [{"name": structure[area]["name"], "url": f"""/{area}s/{structure[area]["id"]}"""} for area in crumbs]
 
 		arguments = {"area": area, "type": type, "path": path, "subareas": subareas, "subtype": subtype}
-		return render_template("Area/Index.j2", datetime=datetime, IDMAPPING=IDMAPPING, **arguments)
+		return render_template(IDMapping["Template"], datetime=datetime, IDMapping=IDMapping, **arguments)
 
 	return callback
 
@@ -78,6 +80,7 @@ def POST(type: str) -> callable:
 
 def GET_event(type: str) -> callable:
 	crumbs = {"curtain": ["home", "room", "curtain"], "room": ["home", "room"], "home": ["home"]}[type]
+	IDMapping = IDMAPPING["EditEvent"]
 
 	async def callback(area_id: str, event_id: int):
 		async with httpx.AsyncClient() as client:
@@ -92,7 +95,7 @@ def GET_event(type: str) -> callable:
 		path = [{"name": structure[area]["name"], "url": f"""/{area}s/{structure[area]["id"]}"""} for area in crumbs]
 		path.append({"name": f"""Event #{event["id"]}""", "url": f""})
 
-		return render_template("Area/EditEvent.j2", event=event, path=path, IDMAPPING=IDMAPPING)
+		return render_template(IDMapping["Template"], event=event, path=path, IDMapping=IDMapping)
 
 	return callback
 
