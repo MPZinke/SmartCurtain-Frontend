@@ -1,7 +1,7 @@
 
-EditAreaEvent.Inputs.DATETIME = <HTMLInputElement>document.getElementById("AreaEvent.Edit.Modal-datetime-input");
-EditAreaEvent.Inputs.PERCENTAGE_RANGE = <HTMLInputElement>document.getElementById("AreaEvent.Edit.Modal-percentage_range-input");
-EditAreaEvent.Inputs.PERCENTAGE_INPUT = <HTMLInputElement>document.getElementById("AreaEvent.Edit.Modal-percentage_input-input");
+EditAreaEvent.Inputs.DATETIME = <HTMLInputElement>document.getElementById(${{EditEventModalDatetimeInput}}$);
+EditAreaEvent.Inputs.PERCENTAGE_RANGE = <HTMLInputElement>document.getElementById(${{EditEventModalPercentRangeInput}}$);
+EditAreaEvent.Inputs.PERCENTAGE_INPUT = <HTMLInputElement>document.getElementById(${{EditEventModalPercentInputInput}}$);
 
 
 EditAreaEvent.update_percentage_range = function update_percentage_range(input: HTMLInputElement)

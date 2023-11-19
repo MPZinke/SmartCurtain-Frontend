@@ -21,10 +21,17 @@ import Routes.Root
 import asyncio
 from datetime import datetime, timedelta
 from flask import redirect, render_template, request
+import json
 import httpx
+import os
+from pathlib import Path
 
 
 from Global import BACKEND_DOMAIN
+
+
+with open(os.path.join(Path(__file__).parent.parent, "IdMapping.json"), "r") as file:
+	IDMAPPING = json.load(file)
 
 
 def GET(type: str) -> callable:
@@ -45,7 +52,7 @@ def GET(type: str) -> callable:
 		path = [{"name": structure[area]["name"], "url": f"""/{area}s/{structure[area]["id"]}"""} for area in crumbs]
 
 		arguments = {"area": area, "type": type, "path": path, "subareas": subareas, "subtype": subtype}
-		return render_template("Area/Index.j2", datetime=datetime, **arguments)
+		return render_template("Area/Index.j2", datetime=datetime, IDMAPPING=IDMAPPING, **arguments)
 
 	return callback
 
@@ -85,7 +92,7 @@ def GET_event(type: str) -> callable:
 		path = [{"name": structure[area]["name"], "url": f"""/{area}s/{structure[area]["id"]}"""} for area in crumbs]
 		path.append({"name": f"""Event #{event["id"]}""", "url": f""})
 
-		return render_template("Area/EditEvent.j2", event=event, path=path)
+		return render_template("Area/EditEvent.j2", event=event, path=path, IDMAPPING=IDMAPPING)
 
 	return callback
 

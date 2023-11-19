@@ -1,6 +1,6 @@
 
 
-<script src="{{ url_for("static", filename="Scripts/Components/NewEventModal.j2/Header.js") }}"></script>
+<script src="{{ url_for("static", filename=IDMAPPING["NewEventModal-Header"]["Javascript"]) }}"></script>
 
 
 <button type="button"
@@ -52,7 +52,12 @@
 					>
 						<div>
 							<div class="input-group mb-3">
-								<span class="input-group-text" id="basic-addon1">Event Position</span>
+								<span
+								  class="input-group-text"
+								  id="basic-addon1"
+								>
+									Event Position
+								</span>
 
 								<div
 								  class="input-group-text"
@@ -65,8 +70,8 @@
 									  max="100"
 									  step="1"
 									  value="0"
-									  id="NewAreaEventModal-percentage_range-input"
-									  name="NewAreaEventModal-percentage_range-input"
+									  id="{{ IDMAPPING["NewEventModal-Scripts"]["values"]["NewAreaModalPercentageRangeInput"] }}"
+									  name="{{ IDMAPPING["NewEventModal-Scripts"]["values"]["NewAreaModalPercentageRangeInput"] }}"
 									  onchange="NewAreaEventModal.update_percentage_input(this);"
 									>
 								</div>
@@ -77,7 +82,7 @@
 								  max="100"
 								  step="1"
 								  value="0"
-								  id="NewAreaEventModal-percentage_input-input"
+								  id="{{ IDMAPPING["NewEventModal-Scripts"]["values"]["NewAreaModalPercentageInputInput"] }}"
 								  onchange="NewAreaEventModal.update_percentage_range(this);"
 								>
 							</div>
@@ -95,8 +100,8 @@
 							  class="input-group-text"
 							>
 								<input
-								  id="NewAreaEventModal-select_time-checkbox"
-								  name="NewAreaEventModal-select_time-checkbox"
+								  id="{{ IDMAPPING["NewEventModal-Scripts"]["values"]["NewAreaModalSelectTimeCheckbox"] }}"
+								  name="{{ IDMAPPING["NewEventModal-Scripts"]["values"]["NewAreaModalSelectTimeCheckbox"] }}"
 								  class="form-check-input mt-0"
 								  type="checkbox"
 								  value=""
@@ -110,8 +115,8 @@
 								Time
 							</span>
 							<input
-							  id="NewAreaEventModal-datetime-input"
-							  name="NewAreaEventModal-datetime-input"
+							  id="{{ IDMAPPING["NewEventModal-Scripts"]["values"]["NewAreaModalDatetimeInput"] }}"
+							  name="{{ IDMAPPING["NewEventModal-Scripts"]["values"]["NewAreaModalDatetimeInput"] }}"
 							  value="{{ datetime.now().strftime("%Y-%m-%dT%H:%M") }}"
 							  type="datetime-local"
 							  aria-label="Date"
@@ -144,5 +149,4 @@
 	</div>
 </form>
 
-
-<script src="{{ url_for("static", filename="Scripts/Components/NewEventModal.j2/Scripts.js") }}"></script>
+<script src="{{ url_for("static", filename=IDMAPPING["NewEventModal-Scripts"]["Javascript"]) }}"></script>

@@ -1,6 +1,6 @@
 {% extends "Header.j2" %}
 {% block body %}
-	<script src="{{ url_for("static", filename="Scripts/Area/EditEvent.j2/Header.js") }}"></script>
+	<script src="{{ url_for("static", filename=IDMAPPING["EditEvent-Header"]["Javascript"]) }}"></script>
 
 	<title>
 		Edit Event
@@ -22,8 +22,8 @@
 					  max="100"
 					  step="1"
 					  value="{{ event["percentage"] }}"
-					  id="EditAreaEvent-percentage_range-input"
-					  name="EditAreaEvent-percentage_range-input"
+					  id="{{ IDMAPPING["EditEvent-Scripts"]["values"]["EditAreaEventModalPercentRangeInput"] }}"
+					  name="{{ IDMAPPING["EditEvent-Scripts"]["values"]["EditAreaEventModalPercentRangeInput"] }}"
 					  onchange="EditAreaEvent.update_percentage_input(this);"
 					>
 				</div>
@@ -34,7 +34,7 @@
 				  max="100"
 				  step="1"
 				  value="{{ event["percentage"] }}"
-				  id="EditAreaEvent-percentage_input-input"
+				  id="{{ IDMAPPING["EditEvent-Scripts"]["values"]["EditAreaEventModalPercentInputInput"] }}"
 				  onchange="EditAreaEvent.update_percentage_range(this);"
 				>
 			</div>
@@ -47,8 +47,8 @@
 					Select Time
 				</span>
 				<input
-				  id="EditAreaEvent-datetime-input"
-				  name="EditAreaEvent-datetime-input"
+				  id="{{ IDMAPPING["EditEvent-Scripts"]["values"]["EditAreaEventModalDatetimeInput"] }}"
+				  name="{{ IDMAPPING["EditEvent-Scripts"]["values"]["EditAreaEventModalDatetimeInput"] }}"
 				  value="{{ event["time"] }}"
 				  type="datetime-local"
 				  aria-label="Date"
@@ -63,5 +63,5 @@
 		</form>
 	</div>
 
-	<script src="{{ url_for("static", filename="Scripts/Area/EditEvent.j2/Scripts.js") }}"></script>
+	<script src="{{ url_for("static", filename=IDMAPPING["EditEvent-Script"]["Javascript"]) }}"></script>
 {% endblock %}
